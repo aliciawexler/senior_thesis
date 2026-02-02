@@ -2,16 +2,19 @@
 This file allows a user to specify a number of backbone atoms in an alpha/beta-amino acid-containing peptidomimetic, then generates all possible combinations of the two
 and writes them to a file specified by the filename parameter of the export_sequences_streamed() function. Portions that are commented out can be added in, if desired,
 to add gamma amino acids to the combinations.
+
+IMPORTANT NOTE: You MUST change "<CSV OUTPUT>" on line 52 to the name of your desired CSV file
 '''
 import csv
 import itertools
 from more_itertools import distinct_permutations
 from tqdm import tqdm
 
-# Amino acid backbone atom counts
-atom_counts = {'3': 3, '4': 4}#{'3': 3, '4': 4, '5': 5}
+# Amino acid backbone atom counts, replace with commented out version for gamma
+atom_counts = {'3': 3, '4': 4} #{'3': 3, '4': 4, '5': 5}
 target_atoms = 48
 
+#remove comment for gamma
 def arrangements(n):
     if n<3:
         return 0
@@ -25,6 +28,7 @@ def arrangements(n):
 
 numArr = (arrangements(target_atoms))
 '''
+#Alpha/beta/gamma combinations
 def generate_combinations():
     combos = []
     for a in range(target_atoms // atom_counts['3'] + 1):
@@ -35,6 +39,7 @@ def generate_combinations():
                     combos.append((a, b, g))
     return combos
 '''
+#Alpha/beta combinations
 def generate_combinations():
     combos = []
     for a in range(target_atoms // atom_counts['3'] + 1):
@@ -43,8 +48,8 @@ def generate_combinations():
             if total == target_atoms:
                 combos.append((a, b))
     return combos
-
-def export_sequences_streamed(combos, filename='sequences_16mer_ab_nog.csv'):
+#Change "<CSV OUTPUT>" to the desired CSV output
+def export_sequences_streamed(combos, filename='<CSV OUTPUT>'):
     print(f"Streaming sequences to {filename}...")
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -62,3 +67,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
