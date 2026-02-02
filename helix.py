@@ -3,7 +3,7 @@ This file allows a user to specify a number of backbone atoms in an alpha/beta-a
 and writes them to a file specified by the filename parameter of the export_sequences_streamed() function. Portions that are commented out can be added in, if desired,
 to add gamma amino acids to the combinations.
 
-IMPORTANT NOTE: You MUST change "<CSV OUTPUT>" on line 52 to the name of your desired CSV file
+IMPORTANT NOTE: You MUST change "<CSV OUTPUT>" on line 52 to the name of your desired CSV file and "atoms" in line 15 to your desired number of backbone atoms
 '''
 import csv
 import itertools
@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 # Amino acid backbone atom counts, replace with commented out version for gamma
 atom_counts = {'3': 3, '4': 4} #{'3': 3, '4': 4, '5': 5}
-target_atoms = 48
+target_atoms = <atoms>
 
 #remove comment for gamma
 def arrangements(n):
@@ -67,4 +67,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
