@@ -38,8 +38,6 @@ def main() -> None:
 
     with open("<CSV>.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["sequence"])  # keep it simple
-
         for tup in product(ALPHABET, repeat=LENGTH):
             seq = "".join(tup)
 
@@ -58,8 +56,8 @@ def main() -> None:
             w.writerow([seq])
             kept += 1
             seen_xmers.update(seq_xmers)
-
-    print(f"Total possible {LENGTH}-mers over {{D,A,B}}: {total:,}")
+    alphabet_str = ",".join(ALPHABET)
+    print(f"Total possible {LENGTH}-mers over {{{alphabet_str}}}: {len(ALPHABET) ** LENGTH:,}")
     print(f"Unique after cyclic (rotation) dedup: {cyclic_unique:,}")
     print(f"Kept after linear {WINDOW}-mer filter: {kept:,}")
 
