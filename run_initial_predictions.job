@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH -A <account to be charged for compute time>
+#SBATCH -p <partition queue>
+#SBATCH --qos=<qos>
+#SBATCH --gres=<gpu name>
+#SBATCH --job-name=<job name>
+#SBATCH --time=<time>
+
+#This file runs boltz predictions on a directory of .yaml files. To use the script, change the above "#SBATCH" lines to allow you to enter a GPU.
+#To use other options in your predict, visit the jwohlwend/boltz documentation for predict options. You may need to specify that your cache is wherever you installed "ccd.pkl". If boltz cannot find a ccd.pkl file,
+#it will try to download that file, and if your GPU doesn't have internet, this will cause an error. 
+
+#EDITS(besides SBATCH stuff):
+#Line 18: Replace <your_site's_conda_base> with your site's conda base. It will typically include "conda.sh" as the last file.
+#Line 19: Replace <your conda environment> with your conda environment that you installed boltz into
+#Line 20: Replace <your yaml dir> with your yaml directory
+
+source <your_site's_conda_base> #loads shell functions
+conda activate <your conda environment>
+cd <your yaml dir>
+
+for yaml in *.yaml; do
+  echo "---- $yaml ----"
+  boltz predict "$yaml" \
+done
