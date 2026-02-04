@@ -11,15 +11,17 @@
 #it will try to download that file, and if your GPU doesn't have internet, this will cause an error. 
 
 #EDITS(besides SBATCH stuff):
-#Line 18: Replace <your_site's_conda_base> with your site's conda base. It will typically include "conda.sh" as the last file.
-#Line 19: Replace <your conda environment> with your conda environment that you installed boltz into
-#Line 20: Replace <your yaml dir> with your yaml directory
+#Line 19: Replace <path_to_your_site's_conda_base> with the path to your site's conda base. It will typically include "conda.sh" as the last file.
+#Line 20: Replace <your conda environment> with your conda environment that you installed boltz into
+#Line 21: Replace <path_to_your_yaml_dir> with your yaml directory
+#Line 26: Uncomment and replace <path_to_your_cache_directory> with the path to your directory containing "ccd.pkl" to specify cache directory
 
-source <your_site's_conda_base> #loads shell functions
+source <path_to_your_site's_conda_base> #loads shell functions
 conda activate <your conda environment>
-cd <your yaml dir>
+cd <path_to_your_yaml_dir>
 
 for yaml in *.yaml; do
   echo "---- $yaml ----"
   boltz predict "$yaml" \
+  #--cache <path_to_your_cache_directory>
 done
