@@ -1,10 +1,12 @@
 # senior_thesis
 Modification of Boltz-1 software for the prediction of non-canonical amino acid-containing peptidomimetics
-Boltz software source(official boltz github repository): jwohlwend/boltz
+Boltz software source (official boltz github repository): jwohlwend/boltz
 ## Initial Requirements
--You must have a conda environment that has boltz installed, and you must also have a cache directory that contains the boltz-1 ccd.pkl. Visit the boltz official directory for more information.
--You must have access to at least one decent GPU for initial boltz structure predictions(TitanXP was used for this workflow) many (300+) CPU resources for MD simulations, and one excellent GPU for training(TitanXP may work with smaller datasets (<2000 samples = 48h/epoch), but for larger datasets, a better GPU is necessary (L40 was used for this workflow, ~8k samples = 13h/epoch))
--For best results, read all .md files from all directories prior to beginning. This process is incredibly error-prone and expensive, and early mistakes can be costly. It is reccomended that users execute a test workflow with their desired residues
+ -You must have a conda environment that has boltz installed, and you must also have a cache directory that contains the boltz-1 ccd.pkl. Visit the boltz official directory for more information.
+ 
+ -You must have access to at least one decent GPU for initial boltz structure predictions(TitanXP was used for this workflow) many (300+) CPU resources for MD simulations, and one excellent GPU for training(TitanXP may work with smaller datasets (<2000 samples = 48h/epoch), but for larger datasets, a better GPU is necessary (L40 was used for this workflow, ~8k samples = 13h/epoch))
+ 
+ -For best results, read all .md files from all directories prior to beginning. This process is incredibly error-prone and expensive, and early mistakes can be costly. It is reccomended that users execute a test workflow with their desired residues
 and a limited number of sequences (~50) for debugging purposes prior to creation of the final model.
 ## Workflow steps: 
 ### 1. Sequence Preparation
