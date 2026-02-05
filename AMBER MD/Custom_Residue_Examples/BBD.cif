@@ -1,0 +1,1 @@
+#This is the custom BBD.cif file based on the B3A.cif entry

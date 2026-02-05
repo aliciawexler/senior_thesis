@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH -A mrsec
+#SBATCH --qos=medium
+#SBATCH --partition=mrsec-compute-long
+#SBATCH --job-name=MD
+
+module --ignore-cache load share_modules/AMBER/2024_mpicuda
+module load cuda/11.7
+source /share/software/scisoft/AMBER/2024/amber24/amber.sh
+
+chmod +x run.sh
+srun run.sh
+wait

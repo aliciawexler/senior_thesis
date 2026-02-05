@@ -1,0 +1,9 @@
+Minimization
+ &cntrl
+  imin=1,          ! Minimization on
+  maxcyc=1000,     ! Total minimization steps
+  ncyc=500,        ! Steepest descent followed by conjugate gradient
+  cut=999.0,       ! No cutoff in vacuum
+  ntb=0,           ! No periodic boundaries (vacuum)
+ /
+

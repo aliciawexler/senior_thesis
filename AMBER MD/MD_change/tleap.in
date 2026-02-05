@@ -1,0 +1,23 @@
+# tleap.in
+
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+
+# Load generated files for B3A
+loadamberparams B3A.frcmod
+loadamberprep B3A.prepin
+
+# Load generated files for 0W6
+loadamberparams 0W6.frcmod
+loadamberprep 0W6.prepin
+
+loadamberparams DAL.frcmod
+loadamberprep DAL.prepin
+
+
+
+
+
+
+
+quit

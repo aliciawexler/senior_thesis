@@ -1,0 +1,15 @@
+Vacuum MD
+ &cntrl
+  imin=0,           ! MD instead of minimization
+  ntb=0,            ! No periodic boundary (vacuum)
+  cut=999.0,        ! No cutoff
+  nstlim=100000000,  ! Number of MD steps; 200 ns, originally 100000000 and 500$
+  dt=0.002,         ! Timestep in ps
+  tempi=310.15,     ! Initial temp(was 300K), 37C
+  temp0=310.15      ! Target temp(was 300K), 37C
+  ntc=2, ntf=2,     ! SHAKE on bonds involving H
+  ntt=3,            ! Langevin dynamics
+  gamma_ln=1.0,     ! Friction coefficient
+  ntpr=500000, ntwx=500000, ntwr=500000, !originally 50000
+ /
+
