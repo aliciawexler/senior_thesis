@@ -3,6 +3,7 @@ In this folder, you will find resources for running MD on a single sequence and 
 Before working in your terminal, make sure to run these two commands to activate any ambertools you may require: 
 
 module --ignore-cache load share_modules/AMBER/2024_mpicuda
+
 source /share/software/scisoft/AMBER/2024/amber24/amber.sh
 
 ## Workflow 1: Custom Residue Generation and Processing
