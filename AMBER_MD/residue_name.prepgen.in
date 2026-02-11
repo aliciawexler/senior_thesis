@@ -1,0 +1,16 @@
+HEAD_NAME N   # Nitrogen
+TAIL_NAME C   # Carbonyl Carbon
+MAIN_CHAIN CA # Alpha Carbon
+OMIT_NAME HN1 # Omit NHE hydrogen 1
+OMIT_NAME HN2 # Omit NHE hydrogen 2
+OMIT_NAME NHE #Omit NHE nitrogen
+OMIT_NAME HC1 #Omit ACE hydrogen 1
+OMIT_NAME HC2 #Omit ACE hydrogen 2
+OMIT_NAME HC3 #Omit ACE hydrogen 3
+OMIT_NAME CAC #Omit sp3 ACE carbon
+OMIT_NAME OAC #Omit ACE oxygen
+OMIT_NAME C1  #Omit ACE carbonyl carbon
+PRE_HEAD_TYPE C_N
+POST_TAIL_TYPE N_C
+CHARGE 0.0	   #If you need to ensure a charge on the residue
+

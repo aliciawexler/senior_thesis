@@ -1,0 +1,39 @@
+CHARGE      0.00 ( 0 )
+Formula: H10 C5 N2 O2 
+ATOM      1  CA  UNL     1      -0.227   1.043  -0.114  0.033700        c3
+ATOM      2  N   UNL     1       1.196   0.875  -0.387 -0.553900         n
+ATOM      3  H   UNL     1      -0.782   0.716  -1.001  0.097700        h1
+ATOM      4  CM  UNL     1      -0.567   2.491   0.220 -0.102100        c3
+ATOM      5  C   UNL     1      -0.580   0.104   1.056  0.630100         c
+ATOM      6  H1  UNL     1      -0.232   3.175  -0.566  0.051367        hc
+ATOM      7  H2  UNL     1      -0.092   2.802   1.157  0.051367        hc
+ATOM      8  H3  UNL     1      -1.647   2.627   0.335  0.051367        hc
+ATOM      9  O   UNL     1       0.241  -0.644   1.587 -0.622100         o
+ATOM     10  NHE UNL     1      -1.876   0.109   1.480 -0.665000         n
+ATOM     11  C1  UNL     1       1.787   1.315  -1.536  0.657100         c
+ATOM     12  HN  UNL     1       1.716   0.271   0.245  0.320500        hn
+ATOM     13  HN1 UNL     1      -2.598   0.690   1.075  0.313500        hn
+ATOM     14  HN2 UNL     1      -2.122  -0.505   2.246  0.313500        hn
+ATOM     15  OAC UNL     1       1.228   1.938  -2.428 -0.610100         o
+ATOM     16  CAC UNL     1       2.855   1.046  -1.580 -0.174100        c3
+ATOM     17  HC1 UNL     1       3.124   0.507  -0.696  0.068700        hc
+ATOM     18  HC2 UNL     1       3.445   1.935  -1.649  0.068700        hc
+ATOM     19  HC3 UNL     1       3.033   0.433  -2.439  0.068700        hc
+BOND    1    1    2    1     CA    N
+BOND    2    1    3    1     CA    H
+BOND    3    1    4    1     CA   CM
+BOND    4    1    5    1     CA    C
+BOND    5    4    6    1     CM   H1
+BOND    6    4    7    1     CM   H2
+BOND    7    4    8    1     CM   H3
+BOND    8    5    9    2      C    O
+BOND    9    5   10    1      C  NHE
+BOND   10    2   11    1      N   C1
+BOND   11    2   12    1      N   HN
+BOND   12   10   13    1    NHE  HN1
+BOND   13   10   14    1    NHE  HN2
+BOND   14   11   15    2     C1  OAC
+BOND   15   11   16    1     C1  CAC
+BOND   16   16   17    1    CAC  HC1
+BOND   17   16   18    1    CAC  HC2
+BOND   18   16   19    1    CAC  HC3

@@ -6,11 +6,12 @@ Boltz software source (official boltz github repository): jwohlwend/boltz
  
  -You must have access to at least one decent GPU for initial boltz structure predictions(TitanXP was used for this workflow) many (300+) CPU resources for MD simulations, and one excellent GPU for training(TitanXP may work with smaller datasets (<2000 samples = 48h/epoch), but for larger datasets, a better GPU is necessary (L40 was used for this workflow, ~8k samples = 13h/epoch))
  
- -For best results, read all .md files from all directories prior to beginning. This process is incredibly error-prone and expensive, and early mistakes can be costly. It is reccomended that users execute a test workflow with their desired residues
-and a limited number of sequences (~50) for debugging purposes prior to creation of the final model.
+ -For best results, read all .md files from all directories prior to beginning. This process is incredibly error-prone and expensive, and early mistakes can be costly. It is reccomended that users execute a test workflow with their desired residues and a limited number of sequences (~50) for debugging purposes prior to creation of the final model.
 ## Workflow steps: 
 ### 1. Sequence Preparation
 Use the "sequence_prep" directory to prepare your dataset of sequences. Read the "sequence_prep.md" file for detailed instructions.
+### 2. MD simulations
+Use the "AMBER_MD" directory to run MD simulations on your prepared sequences. This process involves the creation of your unnatural residues, incoorporation of these residues into Boltz-1 software, and simulation walkthroughs. Read the "amber_md.md" file for detailed instructions. 
 
 ## Acknowledgement and Sources
 @article{passaro2025boltz2,
