@@ -1,0 +1,31 @@
+# Example file structure under the dashed line
+# You must begin your file with "#tleap.in" on the first line. Underneath, load in your force fields (source commands, ff14SB for protien and 
+# gaff2 for custom residues).
+# Under your source commands, load your .frcmod and .prepin files for each unnatural amino acid
+# Finally, set a variable (in this case full) to "sequence { <your sequence in 3-letter code format> }" and under your variable, add the line 
+# "saveAmberParm <your_variable> sequence_<sequence_number>_amber.parm7 sequence_<sequence_number>_amber.rst7. At the end of the file, make 
+# sure to add "quit". 
+-------------------------------------------------------------------------------------------------------------
+# tleap.in
+
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+
+# Load generated files for B3A
+loadamberparams B3A.frcmod
+loadamberprep B3A.prepin
+
+# Load generated files for 0W6
+loadamberparams 0W6.frcmod
+loadamberprep 0W6.prepin
+
+loadamberparams DAL.frcmod
+loadamberprep DAL.prepin
+
+full = sequence { ACE DAL DAL DAL B3A DAL ALA DAL DAL ALA B3A NHE }
+saveAmberParm full sequence_1000_amber.parm7 sequence_1000_amber.rst7
+
+
+
+
+quit
