@@ -3,9 +3,9 @@ In this folder, you will find resources for running MD on a single sequence and 
 
 Before working in your terminal, make sure to run these two commands to activate any ambertools you may require: 
 
-module --ignore-cache load <wherever you downloaded amber>/AMBER/2024_mpicuda
+module --ignore-cache load <wherever_you_downloaded_amber>/AMBER/2024_mpicuda
 
-source /<wherever you downloaded amber>/AMBER/2024/amber24/amber.sh
+source /<wherever_you_downloaded_amber>/AMBER/2024/amber24/amber.sh
 
 ## Workflow 1: Custom Residue Generation and Processing
 Steps 4 and 5 (const.py editing and custom ccd generation) should be done after MD, as MD processing relies on your custom residue's name in the .mol2 file you create of it aligning with the typical ccd component you're analyzing that appears in Boltz-1 from the yaml files. However, it is beneficial to consult atom naming conventions, as it will save a lot of time pre-training if your custom residue's atoms don't have to be renamed later. The provided examples are not from completing these steps in parallel at all, which is why some of the atom names from the first section(before these steps) differ from their corresponding atom names in those steps.
@@ -35,10 +35,10 @@ For future processing purposes(alignment with provided prepgen.in file), some sp
 ### 3. Processing your .mol2 file with ambertools
 Run the commands at the top of the page in your terminal before starting. 
 1. Run this command, replacing the "residue name" portions with the 3-letter name you've given your residue: 
-  antechamber -i <residue name>.mol2 -fi mol2 -o <residue name>.ac -fo ac -c bcc -nc 0
+  antechamber -i <residue_name>.mol2 -fi mol2 -o <residue_name>.ac -fo ac -c bcc -nc 0
     After running this, ensure the .ac file is correct(example for DAL is in the examples directory).
 2. Then, run this command similarly: 
-  parmchk2 -i <residue name>.ac -f ac -o <residue name>.frcmod
+  parmchk2 -i <residue_name>.ac -f ac -o <residue_name>.frcmod
 3. Edit the "residue_name.prepgen.in" file by changing "residue_name" to your residue 3-letter name, ensuring all of the prepgen.in atom names align with your residue's atom names (if your residue was not given the standardized names specified in step 2: labeling atoms), and adding any other main_chain atoms to the file as such (if your residue is not an alpha-amino acid): 
 ...
 MAIN_CHAIN CA # Alpha Carbon
@@ -47,7 +47,7 @@ MAIN_CHAIN CG # Gamma Carbon
 OMIT_NAME HN1 # Omit NHE hydrogen 1
 ...
 4. Run this command:
-  prepgen -i <residue name>.ac -o <residue name>.prepin -f prepin -m <residue name>.prepgen.in
+  prepgen -i <residue_name>.ac -o <residue_name>.prepin -f prepin -m <residue_name>.prepgen.in
     Check the name on the .prepin file, which  should be the first 3 letters of the line above the line starting with “CORRECT”. Make sure this is your residue name.
 
 After completing these steps, when you run tleap for the first time during workflow 2, you will most likely find errors/warnings stating that there are missing bonds, angles, or torsions. This is mostly just because the names of your custom residue atoms are lowercase gaff letters, and the names of the cannonical residue atoms are uppercase ff14SB letters, so you need to parameterize the interactions between the two. These must be added to the .frcmod, in this case, they originate from the gaff2.dat file found in the Sources directory as well as the "AMBER/2024/amber24/dat/leap/parm" directory located wherever you installed AMBER.
@@ -64,9 +64,9 @@ Each custom residue will need its own respective ccd.pkl entry, created by addin
 Make a directory called "MD", cd into that directory, and then make a directory for your specific MD job and cd into the job directory you just made.
 ### 2. Load AMBER and AMBER profiles
 Before moving forward, make sure you've run both of these commands on your terminal: 
-module --ignore-cache load <wherever you downloaded amber>/AMBER/2024_mpicuda
+module --ignore-cache load <wherever_you_downloaded_amber>/AMBER/2024_mpicuda
 
-source /<wherever you downloaded amber>/AMBER/2024/amber24/amber.sh
+source /<wherever_you_downloaded_amber>/AMBER/2024/amber24/amber.sh
 ### 3. Upload Files
 Add the following files to your job directory:
 1. pdb of the sequence you'd like to perform AMBER on(from initial Boltz-1 prediction)
