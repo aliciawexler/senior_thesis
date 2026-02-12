@@ -1,5 +1,5 @@
 # General Overview
-In this folder, you will find resources for running MD on a single sequence and running MD on a batch (your batch of boltz predictions). It is reccomended that you run MD individually before running a large batch for troubleshooting.
+In this folder, you will find resources for running MD on a single sequence and running MD on a batch (your batch of boltz predictions). It is reccomended that you run MD individually before running a large batch for troubleshooting. Each simulation takes 6-8 hours with the provided min.in and production.in simulation files, which first minimize the molecule over 1000 steps (half steepest descent, half conjugate gradient) in a vaccum (min.in) before simulating the equilibriation of the molecule at 37C for 200 ns, taking a frame every nanosecond.
 
 Before working in your terminal, make sure to run these two commands to activate any ambertools you may require: 
 
@@ -80,11 +80,20 @@ Add the following files to your job directory:
 Run these commands in order:
 1. pdb4amber -i <sequence_name>.pdb -o <sequence-name>_amber.pdb
 2. tleap -f tleap.in
-3. sbatch submit.job
+3. sbatch MD_submit.job
 
 ## Workflow 3: Batch MD processing
 ### 1. Make directories for MD
-Make a directory called "MD" and cd into that directory. Then, make two directories called "MD_change" and MD_unchanged" as well as a directory for your MD simulation outputs.
+Make a directory called "MD" and cd into that directory. Then, make two directories called "MD_change" and MD_unchanged" as well as a directory for your MD simulation outputs. Put these 3 directories into the "MD" directory.
 ### 2. File organization
-To the MD_change directory, add your tleap.in, run.sh, and MD_submit.job files (found in the MD_change folder in this repo). To the MD_unchanged directory, add the .frcmod and .prepin files from your unnatural residues and your .in files for MD simulation.
-### 3. MD_batch script modification and run
+To the MD_change directory, add your tleap.in, run.sh, and MD_submit.job files (found in the MD_change folder in this repo). To the MD_unchanged directory, add the .frcmod and .prepin files from your unnatural residues and your .in files for MD simulation. Make sure the "tleap.in" file has all of the lines necessary to load your unnatural amino acid .frcmod and .prepin files. You do not need to add any sequence or amber lines for this file, as the batch script does that for you. There should be a minimum of 1 empty line between the end of your amino acid loading and "quit".
+### 3. Load AMBER and AMBER profiles
+Before moving forward, make sure you've run both of these commands on your terminal: 
+module --ignore-cache load <wherever you downloaded amber>/AMBER/2024_mpicuda
+
+source /<wherever you downloaded amber>/AMBER/2024/amber24/amber.sh
+### 4. MD_batch script modification and run
+This script runs MD on your batch of boltz outputs. Note that this script is written to process a directory of predictions with the following title structure: "boltz_results_sequence_<number>/predictions/sequence_<number>/sequence_<number>.pdb". It also assumes your "MD_change" and "MD_unchanged" directories, as well as the "tleap.in", "MD_submit.job" and "run.sh" files are named as such. It will create an "MD_<sequence_number>" directory for each sequence it processes in the directory you made in step 1 for your simulation outputs. It does NOT allow for repeated submissions; if you need to re-run MD on a specific sequence, you must delete the original MD folder for that specific sequence or move it out of the output directory. See the file itself for necessary edits. Place the script in whatever directory contains your "MD" directory and run with "python MD_batch.py". It is reccomended that you run this script in a tmux session and on a virtual CPU, especially if you will be submitting 100+ structures.
+
+## After MD: Verification
+Look at a few of your MD outputs in PyMOL with the commands "load sequence_<sequence_number>_amber.parm7" and "load_traj md_<sequence_number>.nc". Make sure you're in a directory where those files are visible to PyMOL. Show as sticks, play the simulation as a video, and ensure all of the geometries are correct.
