@@ -78,7 +78,7 @@ Add the following files to your job directory:
   -For this, you will need to set up your own CPU configuration and include the module and source commands for amber loading. 
 ### 4. Simple Commands
 Run these commands in order:
-1. pdb4amber -i <sequence_name>.pdb -o <sequence-name>_amber.pdb
+1. pdb4amber -i <sequence_name>.pdb -o <sequence_name>_amber.pdb
 2. tleap -f tleap.in
 3. sbatch submit.job
 
