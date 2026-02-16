@@ -97,3 +97,42 @@ This script runs MD on your batch of boltz outputs. Note that this script is wri
 
 ## After MD: Verification
 Look at a few of your MD outputs in PyMOL with the commands "load sequence_<sequence_number>_amber.parm7" and "load_traj md_<sequence_number>.nc". Make sure you're in a directory where those files are visible to PyMOL. Show as sticks, play the simulation as a video, and ensure all of the geometries are correct.
+
+Also make sure your repository looks like this:
+
+```
+<your_home_dir>/
+├── MD_batch.py
+├── MD/
+│   ├── MD_change/
+│   │   ├── tleap.in
+│   │   ├── MD_submit.job
+│   │   └── run.sh
+│   ├── MD_unchanged/
+│   │   ├── <custom_res>.prepin                                        #one per custom residue
+│   │   ├── <custom_res>.frcmod                                        #one per custom residue
+│   │   ├── <your_minimization_file>.in
+│   │   ├── <your_production_file>.in
+│   │   └── <any_other_.in_files>.in                                   #optional
+│   └── <your_MD_output_dir>/
+│        └── MD_sequence_<sequence_number>/                            #One per simulation ran
+│            ├── <copied files from MD_change and MD_unchanged>        
+│            ├── sequence_<number>_amber.parm7                         #Crucial for processing
+│            ├── sequence_<number>_amber.pdb
+│            ├── sequence_<number>_amber.rst7
+│            ├── sequence_<number>_amber_nonprot.pdb
+│            ├── sequence_<number>_amber_renum.txt
+│            ├── sequence_<number>_amber_sslink
+│            ├── leap.log
+│            ├── md.out
+│            ├── md.rst7
+│            ├── md_<sequence_number>.nc                               #Crucial for processing
+│            ├── mdinfo
+│            ├── min.out
+│            └── min.rst7
+└── <your_yaml+bolz_dir>/
+    ├── yaml files
+    └── boltz_results_sequence_<sequence number>/                     #One per prediction ran
+        └── boltz_results_sequence_<number>/predictions/sequence_<number>/sequence_<number>.pdb
+```
+If it has other files, that's fine, it just needs to have these ones.
